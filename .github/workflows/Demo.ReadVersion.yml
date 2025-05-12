@@ -2,8 +2,8 @@ name: Demo.ReadVersion
 
 on:
   push:
-    #branches:
-    #  - master  # Runs only on push events to the master branch
+    branches:
+      - master  # Runs only on push events to the master branch
 
 jobs:
   extract-version:
