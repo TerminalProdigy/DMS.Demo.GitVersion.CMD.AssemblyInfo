@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master  # Runs only on push events to the master branch
+      - master-test  # Runs on push events to the master-test branch
 
 jobs:
   extract-version:
