@@ -1,0 +1,24 @@
+name: Demo.ReadVersion
+
+on:
+  push:
+    branches:
+      - master  # Runs only on push events to the master branch
+
+jobs:
+  extract-version:
+    name: Extract Version Info
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract Version from AssemblyInfo.cs
+        run: |
+          FILE_VERSION=$(grep -oP 'AssemblyFileVersion\("\K[^"]+' ./Properties/AssemblyInfo.cs)
+          VERSION=$(grep -oP 'AssemblyVersion\("\K[^"]+' ./Properties/AssemblyInfo.cs)
+          INFO_VERSION=$(grep -oP 'AssemblyInformationalVersion\("\K[^"]+' ./Properties/AssemblyInfo.cs)
+
+          echo "Extracted AssemblyFileVersion: $FILE_VERSION"
+          echo "Extracted AssemblyVersion: $VERSION"
+          echo "Extracted AssemblyInformationalVersion: $INFO_VERSION"
